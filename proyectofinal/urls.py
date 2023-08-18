@@ -16,10 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from AppCoder.views import crear_curso, listar_cursos
+from AppCoder.views import crear_curso, listar_cursos, inicio, profesores, estudiantes, cursos, entregables
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("crear_curso/",crear_curso),
-    path("listar_cursos/",listar_cursos),
+    path("",inicio), #Cuando no tiene nada en la url caiga inicio
 ]

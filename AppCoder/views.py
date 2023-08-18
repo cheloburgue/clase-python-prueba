@@ -18,3 +18,18 @@ def listar_cursos(request):
     for curso in cursos:
         respuesta += f"{curso.nombre} - {curso.comision}<br>"
     return HttpResponse(respuesta) # Muestra el listado de todo lo que tengo en la base de datos
+
+def inicio(request):
+    return HttpResponse("Vista inicio")
+
+def profesores(request):
+    return HttpResponse("Vista profesores")
+
+def estudiantes(request):
+    return HttpResponse("Vista estudiantes")
+
+def cursos(request):
+    return HttpResponse("Vista cursos")
+
+def entregables(request):
+    return HttpResponse("Vista entregables")
