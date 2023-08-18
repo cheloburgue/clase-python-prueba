@@ -20,16 +20,16 @@ def listar_cursos(request):
     return HttpResponse(respuesta) # Muestra el listado de todo lo que tengo en la base de datos
 
 def inicio(request):
-    return HttpResponse("Vista inicio")
+    return render(request, "inicio.html")
 
 def profesores(request):
-    return HttpResponse("Vista profesores")
+    return render(request, "profesores.html")
 
 def estudiantes(request):
-    return HttpResponse("Vista estudiantes")
+    return render(request, "estudiantes.html")
 
 def cursos(request):
-    return HttpResponse("Vista cursos")
+    return render(request, "cursos.html")
 
 def entregables(request):
-    return HttpResponse("Vista entregables")
+    return render(request, "entregables.html")
