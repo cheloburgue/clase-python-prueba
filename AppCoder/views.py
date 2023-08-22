@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import Curso, Profesor
 from django.http import HttpResponse
+from .forms import CursoForm
 # Create your views here.
 
 def crear_curso(request):
@@ -25,6 +26,30 @@ def inicio(request):
 def profesores(request):
     profesores = Profesor.objects.all()
     return render(request, "AppCoder/profesores.html", {"profes": profesores})
+
+def cursoFormulario(request):
+    if request.method=="POST":
+        #nombre = request.POST["nombre"] #Trae el contenido de lo que haya puesto en el id del input del html de cursoFormulario
+        #comision = request.POST["comision"]
+        form=CursoForm(request.POST)
+        if form.is_valid():
+            info = form.cleaned_data #Muestra un diccionario con los datos del form. Convierte form en un dicc
+            #print(info)
+            #exit()
+            nombre = info["nombre"]
+            comision = info["comision"]
+            curso = Curso(nombre=nombre, comision = comision)
+            curso.save()
+            return render(request, "AppCoder/cursoFormulario.html", {"mensaje": "Curso creado"})
+        return render(request, "AppCoder/cursoFormulario.html", {"mensaje": "Datos Invalidos"})
+
+        #creo un objeto curso y guardo en la db
+        #curso = Curso(nombre=nombre,comision=comision)
+        #curso.save()
+        
+    else:
+        formulario_curso = CursoForm() # creo un objeto form
+        return render(request, "AppCoder/cursoFormulario.html", {"formulario":formulario_curso})
 
 def estudiantes(request):
     return render(request, "AppCoder/estudiantes.html")
