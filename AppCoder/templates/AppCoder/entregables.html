@@ -1,11 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ENTREGABLES</title>
-</head>
-<body>
-    <h1>ENTREGABLES</h1>
-</body>
-</html>
+<!-- Extension del template padre-->
+{% extends "AppCoder/padre.html" %} 
+<!-- Cargo statics -->
+{% load static %}
+<!-- uso el espacio reservado jinja en el template padre-->
+{% block titulo %} ESTA ES LA PAGINA DE ENTREGABLES {% endblock %}
+<!-- uso el espacio reservado jinja en el template padre-->
+{% block contenido_que_cambia %}
+    <h1> ESTE ES EL CONTENIDO DE LA PAGINA DE ENTREGABLES </h1>
+{% endblock %}

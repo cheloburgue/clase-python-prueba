@@ -1,16 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CURSOS</title>
-</head>
-<body>
-    <h1>CURSOS</h1>
-    <ul>
+<!-- Extension del template padre-->
+{% extends "AppCoder/padre.html" %} 
+<!-- Cargo statics -->
+{% load static %}
+<!-- uso el espacio reservado jinja en el template padre-->
+{% block titulo %} ESTA ES LA PAGINA DE PROFESORES {% endblock %}
+<!-- uso el espacio reservado jinja en el template padre-->
+{% block contenido_que_cambia %}
+    <h1> CURSOS</h1>
     {% for curso in cursos %}
         <li>{{curso.nombre}} - {{curso.comision}}</li>
     {% endfor %}
-    </ul>
-</body>
-</html>
+{% endblock %}
