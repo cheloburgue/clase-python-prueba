@@ -7,5 +7,10 @@
 </head>
 <body>
     <h1>CURSOS</h1>
+    <ul>
+    {% for curso in cursos %}
+        <li>{{curso.nombre}} - {{curso.comision}}</li>
+    {% endfor %}
+    </ul>
 </body>
 </html>

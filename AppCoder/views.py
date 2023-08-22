@@ -4,8 +4,8 @@ from django.http import HttpResponse
 # Create your views here.
 
 def crear_curso(request):
-    nombre_curso="Programacion basica"
-    comision_curso = 667788
+    nombre_curso="Corte y confeccion"
+    comision_curso = 667791
     print("Creando curso")
     curso=Curso(nombre=nombre_curso,comision=comision_curso)
     curso.save()
@@ -20,16 +20,17 @@ def listar_cursos(request):
     return HttpResponse(respuesta) # Muestra el listado de todo lo que tengo en la base de datos
 
 def inicio(request):
-    return render(request, "inicio.html")
+    return render(request, "AppCoder/inicio.html")
 
 def profesores(request):
-    return render(request, "profesores.html")
+    return render(request, "AppCoder/profesores.html")
 
 def estudiantes(request):
-    return render(request, "estudiantes.html")
+    return render(request, "AppCoder/estudiantes.html")
 
 def cursos(request):
-    return render(request, "cursos.html")
+    cursos = Curso.objects.all()
+    return render(request, "AppCoder/cursos.html", {"cursos": cursos})
 
 def entregables(request):
-    return render(request, "entregables.html")
+    return render(request, "AppCoder/entregables.html")
