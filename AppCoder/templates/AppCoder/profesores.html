@@ -7,9 +7,18 @@
 <!-- uso el espacio reservado jinja en el template padre-->
 {% block contenido_que_cambia %}
     <h1> PROFESORES</h1>
-    <ul>
+    <!-- <ul>
     {% for profe in profes %}
     <li>{{profe.nombre}} - {{profe.apellido}}</li>
     </ul>
-{% endfor %}
+    {% endfor %}-->
+    <form action="" method="POST"> {% csrf_token %}
+        <table>
+            <!-- uso el nombre de la clave del diccionario que devolvi en la vista profesores-->
+            {{formulario.as_table}}
+        </table>
+        <input type="submit" value = "Agregar">
+    </form>
+
+    <h3> {{mensaje}} </h3>
 {% endblock %}

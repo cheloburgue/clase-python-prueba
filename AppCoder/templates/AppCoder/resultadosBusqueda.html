@@ -1,0 +1,18 @@
+<!-- Extension del template padre-->
+{% extends "AppCoder/padre.html" %} 
+<!-- Cargo statics -->
+{% load static %}
+<!-- uso el espacio reservado jinja en el template padre-->
+{% block titulo %} ESTA ES LA PAGINA DE RESULTADOS DE BUSQUEDA DE COMISIONES {% endblock %}
+<!-- uso el espacio reservado jinja en el template padre-->
+{% block contenido_que_cambia %}
+{% if cursos %}
+    <h1>Resultados de busqueda</h1>
+    {% for curso in cursos %}
+        <h3> {{curso.nombre}} - {{curso.comision}}</h3>
+    {% endfor %}
+    <h2>{{mensaje}}</h2>
+{% else %}
+    <h2>No se encontraron resultados!</h2>
+{% endif %}
+{% endblock %}

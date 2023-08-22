@@ -1,0 +1,15 @@
+<!-- Extension del template padre-->
+{% extends "AppCoder/padre.html" %} 
+<!-- Cargo statics -->
+{% load static %}
+<!-- uso el espacio reservado jinja en el template padre-->
+{% block titulo %} ESTA ES LA BUSQUEDA DE COMISIONES {% endblock %}
+<!-- uso el espacio reservado jinja en el template padre-->
+{% block contenido_que_cambia %}
+<!-- Cuando aprieta el boton submit llama a buscarDatos. Busco por GET porque no hay datos sensibles (tambien se puede por POST)-->
+<form action={% url 'buscarDatos' %} method="GET">
+    <input type="number" name="comision" id="comision" placeholder="INSERTE COMISION">
+    <input type="submit" value="buscar comision">
+</form>
+
+{% endblock %}
