@@ -1,0 +1,14 @@
+<!-- Extension del template padre-->
+{% extends "AppCoder/padre.html" %} 
+<!-- Cargo statics -->
+{% load static %}
+<!-- uso el espacio reservado jinja en el template padre-->
+{% block titulo %} ESTA ES LA PAGINA DE ESTUDIANTES{% endblock %}
+<!-- uso el espacio reservado jinja en el template padre-->
+{% block contenido_que_cambia %}
+<h2> FORMULARIO DE ESTUDIANTES </h2>
+<form method="POST">{% csrf_token %}
+    {{ form.as_p}}
+    <input type="submit" value="guardar">
+</form>
+{% endblock %}

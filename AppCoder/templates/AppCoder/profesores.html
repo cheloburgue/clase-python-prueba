@@ -12,13 +12,45 @@
     <li>{{profe.nombre}} - {{profe.apellido}}</li>
     </ul>
     {% endfor %}-->
-    <form action="" method="POST"> {% csrf_token %}
+    <form action="{% url 'profesores' %}" method="POST"> {% csrf_token %}
         <table>
             <!-- uso el nombre de la clave del diccionario que devolvi en la vista profesores-->
             {{formulario.as_table}}
         </table>
         <input type="submit" value = "Agregar">
     </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Email</th>
+                <th>Profesion</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+
+            {% for profesor in profesores %}
+            <tr>
+                <td>
+                    {{profesor.nombre}}
+                </td>
+                <td>
+                    {{profesor.apellido}}
+                </td>
+                <td>
+                    {{profesor.emails}}
+                </td>
+                <td>
+                    {{profesor.profesion}}
+                </td>
+                <td>
+                    <a class="btn btn-danger" href="{% url 'eliminarProfesor' profesor.id %}">Eliminar</a>
+                    <a class="btn btn-success" href="{% url 'editarProfesor' profesor.id %}">Editar</a>
+
+                </td>
+            </tr>
+            {% endfor %}
 
     <h3> {{mensaje}} </h3>
 {% endblock %}
