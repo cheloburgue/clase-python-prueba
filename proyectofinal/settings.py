@@ -122,3 +122,5 @@ STATIC_URL = 'static/' # Se carga cuando ponemos {% load static %} static(Todos 
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGOUT_REDIRECT_URL="inicio" #cuando se desloguea lleva directo al inicio

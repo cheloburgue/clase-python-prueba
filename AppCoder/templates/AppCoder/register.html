@@ -3,11 +3,17 @@
 <!-- Cargo statics -->
 {% load static %}
 <!-- uso el espacio reservado jinja en el template padre-->
-{% block titulo %} ESTA ES LA PAGINA DE INICIO {% endblock %}
+{% block titulo %} Formulario de Login {% endblock %}
 <!-- uso el espacio reservado jinja en el template padre-->
 {% block contenido_que_cambia %}
-    <h1> ESTE ES EL CONTENIDO DE LA PAGINA DE INICIO </h1>
-
     <h3>{{mensaje}}</h3>
-{% endblock %}
 
+    <form action="{% url 'register' %}" method="POST"> {% csrf_token %}
+
+        <table>
+            {{ formulario.as_table}}
+        </table>
+
+        <input type="submit" value="Registrar">
+    </form>
+{% endblock %}

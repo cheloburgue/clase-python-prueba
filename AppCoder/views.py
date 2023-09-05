@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from .models import Curso, Profesor, Estudiante
 from django.http import HttpResponse
-from .forms import CursoForm, ProfesorForm
+from .forms import CursoForm, ProfesorForm, RegistroUsuarioForm
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 # Create your views here.
 
 def crear_curso(request):
@@ -142,3 +144,37 @@ def buscarDatos(request):
         return render(request, "AppCoder/resultadosBusqueda.html", {"cursos":cursos})
     else:
         return render(request, "AppCoder/resultadosBusqueda.html", {"mensaje":"No se ingresaron datos!"})
+
+
+def login_request(request):
+    if request.method == "POST":
+        form = AuthenticationForm(request, data = request.POST)
+        if form.is_valid():
+            info = form.cleaned_data # Copia la info del form y lo trae como un diccionario.
+            user = info["username"]
+            clave = info ["password"]
+            #Verifica si el usuario existe, si existe devuelve el user, sino devuelve None
+            usuario = authenticate(username = user, password = clave) 
+            if usuario is not None:
+                login(request, usuario)
+                return render(request, "AppCoder/inicio.html",{"mensaje":f"Usuario {user} logueado correctamente"})
+        else:
+            return render(request,"AppCoder/login.html", {"formulario":form, "mensaje":"Datos invalidos"})
+        
+    else: #Muestro formulario de login
+        form = AuthenticationForm()
+        return render(request, "AppCoder/login.html",{"formulario":form})
+    
+def register(request):
+    if request.method == "POST":
+        form = RegistroUsuarioForm(request.POST)
+        if form.is_valid():
+            info = form.cleaned_data
+            nombre_usuario = info["username"]
+            form.save()
+            return render(request, "AppCoder/inicio.html", {"mensaje": f"Usuario {nombre_usuario} creado correctaente"})
+        else:
+            return render(request, "AppCoder/inicio.html", { "formulario": form, "mensaje": "Datos invalidos"})
+    else:
+        form = RegistroUsuarioForm()
+        return render(request,"AppCoder/register.html", {"formulario":form})
