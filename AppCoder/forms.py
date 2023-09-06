@@ -25,4 +25,20 @@ class RegistroUsuarioForm(UserCreationForm): #Hereda de un formn de creacion
         fields = ["username","email","password1","password2"]
         help_texts = { k:"" for k in fields} # Borra los help texts del formulario, el texto que esta debajo de los inputs
 
+class UserEditForm(UserCreationForm):
+
+    email = forms.EmailField(label="Email Usuario")
+    password1 = forms.CharField(label="Contraseña",widget=forms.PasswordInput)
+    password2 = forms.CharField(label="Confirmar contraseña", widget=forms.PasswordInput)
+    first_name = forms.CharField(label="Modificar Nombre")
+    last_name = forms.CharField(label="Mofificar Apellido")
+
+    class Meta:
+        model = User
+        fields = ["email","password1","password2","first_name","last_name"]
+        help_texts = { k:"" for k in fields} 
+
+class AvatarForm(forms.Form):
+    imagen = forms.ImageField(label="Imagen")
+
 

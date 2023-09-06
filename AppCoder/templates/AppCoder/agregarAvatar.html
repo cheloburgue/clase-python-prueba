@@ -1,0 +1,20 @@
+<!-- Extension del template padre-->
+{% extends "AppCoder/padre.html" %} 
+<!-- Cargo statics -->
+{% load static %}
+<!-- uso el espacio reservado jinja en el template padre-->
+{% block titulo %} Agregando Avatar de {{usuario}} {% endblock %}
+<!-- uso el espacio reservado jinja en el template padre-->
+{% block contenido_que_cambia %}
+
+
+    <h3>{{mensaje}}</h3>
+    <!-- enctype es para avisarle al form que va a recibir imagenes y no solo texto-->
+    <form action="{% url 'agregarAvatar' %}" method="POST" enctype ="multipart/form-data"> {% csrf_token %}
+        <table>
+            <!-- uso el nombre de la clave del diccionario que devolvi en la vista profesores-->
+            {{formulario.as_table}}
+        </table>
+        <input type="submit" value = "Cargar Avatar">
+    </form>
+{% endblock %}

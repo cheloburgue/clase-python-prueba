@@ -20,18 +20,19 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        {% if user.is_authenticated %}
                         <!-- <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>-->
                         <!-- Busca dentro de las url la que tenga el nombre entre comillas-->
                         <li class="nav-item"><a class="nav-link" href="{% url 'profesores' %}">Profesores</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'estudiante_list' %}">Estudiantes</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'cursos' %}">Cursos</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'entregables' %}">Entregables</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'busquedaComision' %}">Buscar Comision</a></li>
-                        {% if user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'busquedaComision' %}">Buscar Comision</a></li>                       
                         <p style="color:white"> Bienvenido {{user.username}} </p>
+                        <img src="{{avatar}}" alt="Avatar" style="width:50px;height:50px"/>
+                        <li class="nav-item"><a class="btn btn-success" href="{% url 'editarPerfil' %}">Editar Perfil</a></li>
                         <li class="nav-item"><a class="btn btn-danger" href="{% url 'logout' %}">Logut </a></li>
                         {% else %}
-                        <p style="color:white"> Gracias por visitarnos! </p>
                         <li class="nav-item"><a class="btn btn-success" href="{% url 'login' %}">Login</a></li>
                         {% endif %}
                         

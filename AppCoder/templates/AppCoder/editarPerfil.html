@@ -1,0 +1,19 @@
+<!-- Extension del template padre-->
+{% extends "AppCoder/padre.html" %} 
+<!-- Cargo statics -->
+{% load static %}
+<!-- uso el espacio reservado jinja en el template padre-->
+{% block titulo %} Editando Perfil de: {{nombreusuario}} {% endblock %}
+<!-- uso el espacio reservado jinja en el template padre-->
+{% block contenido_que_cambia %}
+    <h3>{{mensaje}}</h3>
+    <form action="{% url 'editarPerfil' %}" method="POST"> {% csrf_token %}
+        <table>
+            <!-- uso el nombre de la clave del diccionario que devolvi en la vista profesores-->
+            {{formulario.as_table}}
+        </table>
+        <input type="submit" value = "Guardar cambios">
+    </form>
+    <a class="btn btn-info" href="{% url 'agregarAvatar' %}">Agregar Avatar</a>
+   
+{% endblock %}
